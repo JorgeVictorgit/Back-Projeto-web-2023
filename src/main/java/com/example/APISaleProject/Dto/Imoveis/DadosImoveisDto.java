@@ -1,11 +1,16 @@
 package com.example.APISaleProject.Dto.Imoveis;
 
+import com.example.APISaleProject.Dto.User.DadosUsuariosDto;
+import com.example.APISaleProject.Dto.User.RegisterUserDto;
+import com.example.APISaleProject.Model.Imoveis.Imoveis;
 import com.example.APISaleProject.Model.Users.User;
 
-public record DadosImoveisDto(String nome, String data, String login, String senha, String identifier) {
 
-    public DadosImoveisDto(User usuario) {
-        this( usuario.getName(), usuario.getBirthdate(), usuario.getLogin(), usuario.getPassword(), usuario.getIdentifier());
+public record DadosImoveisDto(Long id, String nome, String valor, User vendedor, String telefone, String cep, String img) {
+
+    public DadosImoveisDto(Imoveis imoveis) {
+        this(imoveis.getId(), imoveis.getNome(), imoveis.getValor(), imoveis.getVendendor(), imoveis.getTelefone(),  imoveis.getCep(), imoveis.getImg());
     }
+
 
 }

@@ -14,7 +14,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 
@@ -33,14 +32,14 @@ public class UserController {
         this.userService = cliservice;
     }
     @PostMapping(value = "/cliente")
-    public ResponseEntity cadastroFuncionario(@RequestBody @Valid RegisterUserDto registerUserDto) throws UserAlreadyExist {
+    public ResponseEntity cadastroUsuario(@RequestBody @Valid RegisterUserDto registerUserDto) throws UserAlreadyExist {
         var user = new User(registerUserDto);
-        userService.savaFuncionario(user);
+        userService.savaUsuario(user);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @GetMapping(value = "/list")
-    public ResponseEntity<Page<DadosUsuariosDto>> getFuncionarios(@PageableDefault(size = 10,sort = {"name"}) Pageable pagina){
-        return ResponseEntity.ok(listService.List(pagina));
+    public ResponseEntity<Page<DadosUsuariosDto>> getUsuario(@PageableDefault(size = 10,sort = {"name"}) Pageable pagina){
+        return ResponseEntity.ok(listService.ListUsuarios(pagina));
     }
 }

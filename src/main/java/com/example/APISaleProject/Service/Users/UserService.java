@@ -20,7 +20,7 @@ public class UserService {
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Transactional
-    public void savaFuncionario(User user) throws UserAlreadyExist{
+    public void savaUsuario(User user) throws UserAlreadyExist{
         Optional<User> studentExist = userRepository.findById(user.getLogin());
         if(!studentExist.isPresent()){
             user.setPassword(encoder.encode(user.getPassword()));
